@@ -20,7 +20,7 @@ const TaskList = ({ tasks, deleteTask, toggleModal }) => (
             <th scope="row">{ index + 1 }</th>
             <td> 
               <img 
-                src="/assets/icons/envelope.png" 
+                src="assets/icons/envelope.png" 
                 className="icon icon-title" 
                 alt="task icon" 
               />
@@ -36,7 +36,7 @@ const TaskList = ({ tasks, deleteTask, toggleModal }) => (
             <td className="text-left">{ task.description }</td>
             <td>
               <img 
-                src="/assets/icons/remove.png" 
+                src="assets/icons/remove.png" 
                 className="icon icon-delete" 
                 alt="remove task" 
                 title="remove task"
