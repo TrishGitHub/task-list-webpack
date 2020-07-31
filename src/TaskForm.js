@@ -143,9 +143,6 @@ const TaskForm = ({ saveTask, modalVisible, toggleModal, newValues, editTask, up
                 value={ form.title }
                 onChange={ updateField }
               />
-              <small id="name" className="form-text text-muted">
-                We'll never share your email with anyone else.
-              </small>
             </div>
             <div className="form-group">
               <label htmlFor="description">Description</label>
