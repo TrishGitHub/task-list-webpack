@@ -18,7 +18,7 @@ const TaskList = ({ tasks, deleteTask, toggleModal }) => (
       <tbody>
         { tasks.map( (task, index) => (
 
-        <Transition timeout={500} in={true}>
+        <Transition timeout={500} in={true} key={ index }>
         {
           (status) => (
             <tr key={ index }  className={ `row-${status}` }>
