@@ -1,4 +1,5 @@
 import React from "react";
+import { Transition } from 'react-transition-group';
 import useInputState from './useInputState';
 
 const TaskForm = ({ saveTask, modalVisible, toggleModal, newValues, editTask, updateTaskHandler }) => {
@@ -8,180 +9,191 @@ const TaskForm = ({ saveTask, modalVisible, toggleModal, newValues, editTask, up
   const renderModal = (newValues) => {
 
     if(Object.keys(newValues).length !== 0) { return (
-      <div
-      className="modal fade show"
-      id="staticBackdrop"
-      data-backdrop="static"
-      data-keyboard="false"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby="staticBackdropLabel"
-      aria-modal="true"
-    >
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="staticBackdropLabel">
-              Update task
-            </h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            
-              onClick={() => toggleModal("false")}
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div className="modal-body">
-          <form
-            onSubmit={event => {
-              event.preventDefault();
-              editTask(newValues);
-              reset();
-              toggleModal("false")
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Add task title"
-                id="title"
-                name="title"
-                aria-describedby="name Help"
-                value={ newValues.title }
-                onChange={ updateTaskHandler }
-              />
+      <Transition timeout={500} in={true}>
+        {
+          (status) => (
+ 
+        <div
+        className={ `modal fade show modal-${status}` }
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="staticBackdropLabel"
+        aria-modal="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="staticBackdropLabel">
+                Update task
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              
+                onClick={() => toggleModal("false")}
+              >
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <textarea
-                className="form-control"
-                placeholder="Add task decription"
-                id="description"
-                name="description"
-                rows={3}
-                value={ newValues.description }
-                onChange={ updateTaskHandler }
-              />
+            <div className="modal-body">
+            <form
+              onSubmit={event => {
+                event.preventDefault();
+                editTask(newValues);
+                reset();
+                toggleModal("false")
+              }}
+            >
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Add task title"
+                  id="title"
+                  name="title"
+                  aria-describedby="name Help"
+                  value={ newValues.title }
+                  onChange={ updateTaskHandler }
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  className="form-control"
+                  placeholder="Add task decription"
+                  id="description"
+                  name="description"
+                  rows={3}
+                  value={ newValues.description }
+                  onChange={ updateTaskHandler }
+                />
+              </div>
+              <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+                onClick={() => { reset(); toggleModal("false")}} 
+              >
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                className="btn btn-primary"
+              >
+                Save
+              </button>
             </div>
-            <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-              onClick={() => { reset(); toggleModal("false")}} 
-            >
-              Cancel
-            </button>
-            <button 
-              type="submit" 
-              className="btn btn-primary"
-            >
-              Save
-            </button>
-          </div>
-          </form>
+            </form>
+            </div>
           </div>
         </div>
+        <div 
+          className="modal-overlay"
+          onClick={() => { reset(); toggleModal("false")}}
+        ></div>
       </div>
-      <div 
-        className="modal-overlay"
-        onClick={() => { reset(); toggleModal("false")}}
-      ></div>
-    </div>
+      )}
+    </Transition>
   )} else { return (
-      <div
-      className="modal fade show"
-      id="staticBackdrop"
-      data-backdrop="static"
-      data-keyboard="false"
-      tabIndex={-1}
-      role="dialog"
-      aria-labelledby="staticBackdropLabel"
-      aria-modal="true"
-    >
-      <div className="modal-dialog">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="staticBackdropLabel">
-              New task
-            </h5>
-            <button
-              type="button"
-              className="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            
-              onClick={() => { reset(); toggleModal("false")}}
-            >
-              <span aria-hidden="true">×</span>
-            </button>
-          </div>
-          <div className="modal-body">
-          <form
-            onSubmit={event => {
-              event.preventDefault();
-              saveTask(form);
-              reset();
-              toggleModal("false")
-            }}
-          >
-            <div className="form-group">
-              <label htmlFor="name">Name</label>
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Add task title"
-                id="title"
-                name="title"
-                aria-describedby="name Help"
-                value={ form.title }
-                onChange={ updateField }
-              />
+    <Transition timeout={500} in={true}>
+    {
+      (status) => (
+        <div
+        className={ `modal fade show modal-${status}` }
+        id="staticBackdrop"
+        data-backdrop="static"
+        data-keyboard="false"
+        tabIndex={-1}
+        role="dialog"
+        aria-labelledby="staticBackdropLabel"
+        aria-modal="true"
+      >
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h5 className="modal-title" id="staticBackdropLabel">
+                New task
+              </h5>
+              <button
+                type="button"
+                className="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              
+                onClick={() => { reset(); toggleModal("false")}}
+              >
+                <span aria-hidden="true">×</span>
+              </button>
             </div>
-            <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <textarea
-                className="form-control"
-                placeholder="Add task decription"
-                id="description"
-                name="description"
-                rows={3}
-                value={ form.description }
-                onChange={ updateField }
-              />
+            <div className="modal-body">
+            <form
+              onSubmit={event => {
+                event.preventDefault();
+                saveTask(form);
+                reset();
+                toggleModal("false")
+              }}
+            >
+              <div className="form-group">
+                <label htmlFor="name">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Add task title"
+                  id="title"
+                  name="title"
+                  aria-describedby="name Help"
+                  value={ form.title }
+                  onChange={ updateField }
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea
+                  className="form-control"
+                  placeholder="Add task decription"
+                  id="description"
+                  name="description"
+                  rows={3}
+                  value={ form.description }
+                  onChange={ updateField }
+                />
+              </div>
+              <div className="modal-footer">
+              <button
+                type="button"
+                className="btn btn-secondary"
+                data-dismiss="modal"
+                onClick={() => { reset(); toggleModal("false")}} 
+              >
+                Cancel
+              </button>
+              <button 
+                type="submit" 
+                className="btn btn-primary"
+                disabled={ form.title.length < 1 || form.description.length < 1 }
+              >
+                Save
+              </button>
             </div>
-            <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-dismiss="modal"
-              onClick={() => { reset(); toggleModal("false")}} 
-            >
-              Cancel
-            </button>
-            <button 
-              type="submit" 
-              className="btn btn-primary"
-              disabled={ form.title.length < 1 || form.description.length < 1 }
-            >
-              Save
-            </button>
-          </div>
-          </form>
+            </form>
+            </div>
           </div>
         </div>
+        <div 
+          className="modal-overlay"
+          onClick={() => { reset(); toggleModal("false")}}
+        ></div>
       </div>
-      <div 
-        className="modal-overlay"
-        onClick={() => { reset(); toggleModal("false")}}
-      ></div>
-    </div>
+      )}
+    </Transition>
   )}
 }
 

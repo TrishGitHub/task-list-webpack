@@ -8,6 +8,40 @@
   display: block!important;
 }
 
+
+.modal-entered .modal-dialog {
+  animation-name: modalSlide;
+  animation-duration: .6s;
+}
+
+@keyframes modalSlide {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.row-entered {
+  animation-name: show;
+  animation-duration: .6s;
+}
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
 .form-group {
   text-align: left;
 }
