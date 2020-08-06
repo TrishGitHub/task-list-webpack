@@ -11,7 +11,7 @@ export default () => {
     updateField: event => {
       setValues({
         ...form,
-        [event.target.name]: event.target.value.trim()
+        [event.target.name]: event.target.value
       });
     },
     reset: () => setValues({
